@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Navigate, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const AddCategory = () => {
 
@@ -17,20 +17,21 @@ const AddCategory = () => {
 
 
     useEffect(() => {
-        if(location.state){
+        const intialValues = { title: "", description: "" };
+        if (location.state) {
             fetch(url + "/" + location.state.id)
-            .then(response => response.json())
-            .then(data => {
-                setFormValues(data.data)
-                setIsNew(false)
-            }).catch((e)=>{
-                console.log(e.message)
-            })
-        }else{
+                .then(response => response.json())
+                .then(data => {
+                    setFormValues(data.data)
+                    setIsNew(false)
+                }).catch((e) => {
+                    console.log(e.message)
+                })
+        } else {
             setFormValues(intialValues)
         }
-        
-    }, [])
+
+    }, [location.state])
 
 
 
@@ -49,7 +50,7 @@ const AddCategory = () => {
         if (Object.keys(formErrors).length === 0 && isSubmit) {
             console.log(formValues)
         }
-    }, [formErrors])
+    }, [formErrors, formValues, isSubmit])
 
     const validate = (values) => {
         const errors = {}
@@ -69,12 +70,12 @@ const AddCategory = () => {
     const postForm = () => {
 
         console.log("formValue", formValues)
-        if(isNew){
+        if (isNew) {
             fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-    
+
                 },
                 body: JSON.stringify(formValues)
             }
@@ -89,12 +90,12 @@ const AddCategory = () => {
                 .catch((err) => {
                     console.log(err.message);
                 });
-        }else{
+        } else {
             fetch(url + "/" + location.state.id, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
-    
+
                 },
                 body: JSON.stringify(formValues)
             }
@@ -104,14 +105,14 @@ const AddCategory = () => {
                     if (response.status === 200) {
                         alert("success")
                         navigate('/categories')
-                        
+
                     }
                 })
                 .catch((err) => {
                     console.log(err.message);
                 });
         }
-        
+
     }
 
     return (
