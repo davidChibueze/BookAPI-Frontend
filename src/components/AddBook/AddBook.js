@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import Moment from 'react-moment';
+
 import moment from 'moment'
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -14,6 +14,7 @@ const AddBook = () => {
     const url = "https://books-api-production-4673.up.railway.app/api/v1/books"
 
     useEffect(() => {
+        const intialValues = { title: "", author: "", publishedOn: "" }
         if (location.state) {
             fetch(url + "/" + location.state.id)
                 .then(response => response.json())
@@ -31,7 +32,7 @@ const AddBook = () => {
             setFormValues(intialValues)
         }
 
-    }, [])
+    }, [location.state])
 
 
     const handleChange = (e) => {
@@ -49,7 +50,7 @@ const AddBook = () => {
         if (Object.keys(formErrors).length === 0 && isSubmit) {
             console.log(formValues)
         }
-    }, [formErrors])
+    }, [formErrors, isSubmit, formValues])
 
     const validate = (values) => {
         const errors = {}
