@@ -8,7 +8,7 @@ const ListCategories = () => {
     const [deleteStatus, setDeleteStatus] = useState(false)
 
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
 
     useEffect(() => {
