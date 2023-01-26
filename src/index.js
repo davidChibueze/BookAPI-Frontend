@@ -11,6 +11,7 @@ import ListCategories from './components/listCategories/ListCategories';
 import AddCategory from './components/AddCategory/AddCategory';
 import AddBook from './components/AddBook/AddBook';
 import ListBooks from './components/listBooks/ListBooks';
+import AddBookToCategory from './components/AddBookToCategory/AddBookToCategory';
 
 
 const router = createBrowserRouter([
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "addBook",
         element:<AddBook/>
+      },
+      {
+        path: "addBookToCategory",
+        element: <AddBookToCategory />
       }
     ]
   },

@@ -53,6 +53,11 @@ const ListBooks = () => {
                                 id: items.id,
                             }
                         })}>Edit</button>
+                        <button className='ml-3 italic text-purple-400' onClick={()=> navigate('/addBookToCategory',{
+                            state: {
+                                book: items,
+                            }
+                        })}>Add to Category</button>
                     </li>
                 )
             })}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate} from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 
 
 const ListCategories = () => {
@@ -32,16 +32,19 @@ const ListCategories = () => {
     return (
 
 
-        <ul>
+        <ul  className='ml-5 flex gap-5'>
             {
 
                 categories.map((item, index) => {
                     return (
-                        <li key={index} className="flex gap-3">
-                            <p>{index + 1}</p>
-                            <p >{item.title}</p>
-                            <p>{item.description}</p>
-                            <button className='ml-3 italic text-red-400' onClick={() => {
+                        <button key={index} className="group w-fit-content bg-[#F5F5F5] cursor-pointer focus:text-white focus:bg-primary-color rounded-md text-black hover:ring p-4 text-base font-normal"  onClick={()=>{
+                          
+                        //     navigate('/addCategory', { state: {
+                        //     id: item.id,
+                        // }})
+                    }}>
+                            {item.title}
+                            <Link className='group-focus:ml-3 group-focus:text-red-400 invisible group-focus:visible' onClick={() => {
                                 console.log("deleting the category...", item.id)
                                 fetch('https://books-api-production-4673.up.railway.app/api/v1/categories/' + item.id,
                                     {
@@ -61,11 +64,9 @@ const ListCategories = () => {
                                     .catch((err) => {
                                         console.log(err.message);
                                     });
-                            }}>Delete</button>
-                            <button className='ml-3 italic text-blue-400' onClick={()=>navigate('/addCategory', { state: {
-                                id: item.id,
-                            }})}>Edit</button>
-                        </li>
+                            }}>X</Link>
+                            
+                        </button>
                     )
                 })
             }
