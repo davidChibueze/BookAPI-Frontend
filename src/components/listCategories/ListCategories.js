@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const ListCategories = () => {
 
     const [categories, setCategories] = useState([]);
-    const [catDetails, setCatDetails] = useState("")
+    
     const navigate = useNavigate()
     const category =[]
     const [deleteStatus, setDeleteStatus] = useState(false)
