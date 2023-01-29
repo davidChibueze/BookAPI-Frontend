@@ -12,6 +12,7 @@ import AddCategory from './components/AddCategory/AddCategory';
 import AddBook from './components/AddBook/AddBook';
 import ListBooks from './components/listBooks/ListBooks';
 import AddBookToCategory from './components/AddBookToCategory/AddBookToCategory';
+import ViewCategory from './components/ViewCategory/ViewCategory';
 
 
 const router = createBrowserRouter([
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "addBookToCategory",
         element: <AddBookToCategory />
+      },
+      {
+        path: "viewCategory",
+        element: <ViewCategory />
       }
     ]
   },
